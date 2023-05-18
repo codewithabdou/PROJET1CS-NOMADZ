@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <HomeSec />
-      <div className="absolute flex-center top-0 left-0 w-screen -z-10 h-screen ">
+      <div className="absolute flex-center top-0 left-0 w-full -z-10 h-screen ">
         <Swiper
           speed={2000}
           effect="fade"
