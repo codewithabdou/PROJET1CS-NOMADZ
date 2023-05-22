@@ -14,6 +14,7 @@ import "@styles/globals.css";
 
 // import required modules
 import { Autoplay, EffectCreative, EffectFade, Navigation } from "swiper";
+import Footer from "@components/Footer";
 
 export default function Home() {
   return (
@@ -43,6 +44,7 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </div>
+      <Footer/>
     </>
   );
 }

@@ -12,14 +12,11 @@ const Nav = () => {
   return (
     <nav className="flex-between bg-gradient-to-b from-gray-800 to-transparent h-16 w-full lg:px-20 px-10 py-6">
       <Link href="/" className="flex gap-2 flex-center">
-        <Image
-          src="/assets/images/logo.svg"
+        <img
+          src="/assets/images/logo.png"
           alt="logo"
-          width={30}
-          height={30}
-          className="object-contain"
+          className="object-contain h-14 w-auto"
         />
-        <p className="logo_text">NomaDz</p>
       </Link>
 
       {/* Desktop Navigation */}
