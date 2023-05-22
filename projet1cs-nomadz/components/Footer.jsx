@@ -16,17 +16,17 @@ const Footer = () => {
               innovations and a positive.
             </p>
             <div className="flex w-full space-x-4">
-              <a href="">
-                <GrInstagram className="text-orange-500" />
+              <a href="https://www.instagram.com/abdouuu.h/" target="_blank">
+                <GrInstagram className="text-orange-500 hover:-translate-y-[1px] transition-all duration-300 hover:text-orange-800" />
+              </a>
+              <a href="https://www.facebook.com/abderrahmene.hbch" target="_blank">
+                <GrFacebook className="text-orange-500 hover:-translate-y-[1px] transition-all duration-300 hover:text-orange-800" />
               </a>
               <a href="">
-                <GrFacebook className="text-orange-500" />
+                <GrTwitter className="text-orange-500 hover:-translate-y-[1px] transition-all duration-300 hover:text-orange-800" />
               </a>
-              <a href="">
-                <GrTwitter className="text-orange-500" />
-              </a>
-              <a href="">
-                <GrLinkedin className="text-orange-500" />
+              <a href="https://www.linkedin.com/in/khaled-abderrahm%C3%A8ne-habouche-82605626b/" target="_blank">
+                <GrLinkedin className="text-orange-500 hover:-translate-y-[1px] transition-all duration-300 hover:text-orange-800" />
               </a>
             </div>
           </div>
@@ -34,7 +34,7 @@ const Footer = () => {
             <p className="font-semibold">Get in touch</p>
             <input
               type="text"
-              className="bg-gray-100 text-xs xl:w-36 w-32 text-[#B3BAC5] px-4 py-2"
+              className="bg-gray-100 border-black border-[1px] text-xs xl:w-36 w-32 text-black px-4 py-2"
               placeholder="Your email here ..."
             />
             <button
@@ -49,27 +49,27 @@ const Footer = () => {
           <div className="space-y-2 pt-4 ">
             <p className="font-semibold">About Us</p>
             <ul className="space-y-1">
-              <li className="text-xs text-gray-700">Feautures</li>
-              <li className="text-xs text-gray-700">FAQ's</li>
-              <li className="text-xs text-gray-700">News</li>
-              <li className="text-xs text-gray-700">Pricing</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">Feautures</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">FAQ's</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">News</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">Pricing</li>
             </ul>
           </div>
           <div className="space-y-2 pt-4">
             <p className="font-semibold">Company</p>
             <ul className="space-y-1">
-              <li className="text-xs text-gray-700">Core values</li>
-              <li className="text-xs text-gray-700">Partner w/ us</li>
-              <li className="text-xs text-gray-700">Blog</li>
-              <li className="text-xs text-gray-700">Contact</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">Core values</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">Partner w/ us</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">Blog</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">Contact</li>
             </ul>
           </div>
           <div className="space-y-2 pt-4">
             <p className="font-semibold">Support</p>
             <ul className="space-y-1">
-              <li className="text-xs text-gray-700">Support centers</li>
-              <li className="text-xs text-gray-700">Feddback</li>
-              <li className="text-xs text-gray-700">Accesibility</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">Support centers</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">Feddback</li>
+              <li className="text-xs text-gray-700 relative after:absolute after:left-0 after:bottom-0 hover:text-black duration-300 after:w-full after:transition-all after:duration-300 after:scale-x-0 after:bg-black after:h-[1px] hover:after:scale-x-100 transition-all cursor-pointer w-fit">Accesibility</li>
             </ul>
           </div>
         </div>
