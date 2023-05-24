@@ -3,7 +3,7 @@ import { GrInstagram, GrFacebook, GrTwitter, GrLinkedin } from "react-icons/gr";
 const Footer = () => {
   return (
     <div className="bg-[#FFE4C0]">
-      <div className="bg-[#FFE4C0] xl:space-x-10 xl:py-10 py-4 px-6 space-y-4 xl:space-y-0 xl:px-20 flex flex-col xl:flex-row justify-between  ">
+      <div className=" xl:space-x-10 xl:py-10 py-4 px-6 space-y-4 xl:space-y-0 xl:px-20 flex flex-col xl:flex-row justify-between  ">
         <div className="w-full xl:w-1/2 flex flex-row justify-evenly   ">
           <div className=" flex w-1/2   flex-col items-start gap-y-2 justify-center px-4">
             <img
@@ -33,7 +33,7 @@ const Footer = () => {
           <div className="space-y-3   w-1/2 md:pl-16 px-8 pt-4">
             <p className="font-semibold">Get in touch</p>
             <input
-              type="text"
+              type="email"
               className="bg-gray-100 border-black border-[1px] text-xs xl:w-36 w-32 text-black px-4 py-2"
               placeholder="Your email here ..."
             />
