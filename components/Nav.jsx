@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
 
 const Nav = () => {
   const user = false;
@@ -24,10 +25,14 @@ const Nav = () => {
         {user ? (
           <div className="flex flex-center gap-3 md:gap-5">
             <Link href="/map">
-              <p className="dropdown_link cursor-pointer">Map</p>
+              <p className="relative text-sm font-inter text-white hover:text-[#FA7436] font-medium transition duration-300 hover:-translate-y-1 after:absolute after:bottom-0 after:bg-white flex-center after:h-[1px] after:transition after:duration-300 after:w-[80%] after:scale-x-0 hover:after:scale-x-100 cursor-pointer">
+                Map
+              </p>
             </Link>
             <Link href="/visite">
-              <p className="dropdown_link cursor-pointer">Visite</p>
+              <p className="relative text-sm font-inter text-white hover:text-[#FA7436] font-medium transition duration-300 hover:-translate-y-1 after:absolute after:bottom-0 after:bg-white flex-center after:h-[1px] after:transition after:duration-300 after:w-[80%] after:scale-x-0 hover:after:scale-x-100 cursor-pointer">
+                Visite
+              </p>
             </Link>
             <button type="button" className="outline_btn">
               Sign Out
@@ -45,10 +50,14 @@ const Nav = () => {
         ) : (
           <div className="flex flex-center gap-3 md:gap-5">
             <Link href="/map">
-              <p className="dropdown_link cursor-pointer">Map</p>
+              <p className="relative text-sm font-inter text-white hover:text-[#FA7436] font-medium transition duration-300 hover:-translate-y-1 after:absolute after:bottom-0 after:bg-white flex-center after:h-[1px] after:transition after:duration-300 after:w-[80%] after:scale-x-0 hover:after:scale-x-100 cursor-pointer">
+                Map
+              </p>
             </Link>
             <Link href="/visite">
-              <p className="dropdown_link cursor-pointer">Visite</p>
+              <p className="relative text-sm font-inter text-white hover:text-[#FA7436] font-medium transition duration-300 hover:-translate-y-1 after:absolute after:bottom-0 after:bg-white flex-center after:h-[1px] after:transition after:duration-300 after:w-[80%] after:scale-x-0 hover:after:scale-x-100 cursor-pointer">
+                Visite
+              </p>
             </Link>
             <button type="button" className="outline_btn">
               Sign in
@@ -67,11 +76,11 @@ const Nav = () => {
               height={37}
               className="rounded-full"
               alt="profile"
-              onClick={() => setToggleDropdown(!toggleDropdown)}
+              onClick={() => setToggleDropdown((current) => !current)}
             />
 
             {toggleDropdown && (
-              <div className="dropdown">
+              <div className="dropdown ">
                 <Link href="/profile">
                   <p
                     className="dropdown_link cursor-pointer"
@@ -107,7 +116,7 @@ const Nav = () => {
                   onClick={() => {
                     setToggleDropdown(false);
                   }}
-                  className="mt-5 w-full outline_btn"
+                  className="mt-5 w-[80%] black_btn"
                 >
                   Sign Out
                 </button>
@@ -116,15 +125,54 @@ const Nav = () => {
           </div>
         ) : (
           <>
-            <button
-              type="button"
-              onClick={() => {
-                SignIn();
-              }}
-              className="outline_btn"
-            >
-              Sign in
-            </button>
+            <div className="flex">
+              {toggleDropdown ? (
+                <>
+                  <GiCancel
+                    size={25}
+                    className="text-white"
+                    onClick={() => setToggleDropdown(false)}
+                  />
+                  <div className="dropdown ">
+                    <Link href="/map">
+                      <p
+                        className="dropdown_link cursor-pointer"
+                        onClick={() => {
+                          setToggleDropdown(false);
+                        }}
+                      >
+                        Map
+                      </p>
+                    </Link>
+                    <Link href="/visite">
+                      <p
+                        className="dropdown_link cursor-pointer"
+                        onClick={() => {
+                          setToggleDropdown(false);
+                        }}
+                      >
+                        Visite
+                      </p>
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setToggleDropdown(false);
+                      }}
+                      className="mt-5 w-[80%] black_btn"
+                    >
+                      Sign in
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <GiHamburgerMenu
+                  size={25}
+                  className="text-white"
+                  onClick={() => setToggleDropdown(true)}
+                />
+              )}
+            </div>
           </>
         )}
       </div>
