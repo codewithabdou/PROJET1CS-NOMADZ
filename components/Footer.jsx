@@ -2,7 +2,7 @@ import { GrInstagram, GrFacebook, GrTwitter, GrLinkedin } from "react-icons/gr";
 
 const Footer = () => {
   return (
-    <div className="bg-[#FFE4C0]">
+    <div className="bg-[#F4EAE5]">
       <div className=" xl:space-x-10 xl:py-10 py-4 px-6 space-y-4 xl:space-y-0 xl:px-20 flex flex-col xl:flex-row justify-between  ">
         <div className="w-full xl:w-1/2 flex flex-row justify-evenly   ">
           <div className=" flex w-1/2   flex-col items-start gap-y-2 justify-center px-4">

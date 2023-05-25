@@ -6,7 +6,7 @@ import { useState } from "react";
 import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
 
 const Nav = () => {
-  const user = false;
+  const user = true;
 
   const [toggleDropdown, setToggleDropdown] = useState(false);
 

@@ -9,7 +9,7 @@ export const metadata = {
 const LayoutRoot = ({ children }) => {
   return (
     <html lang="fr">
-      <body className="h-screen">
+      <body className="h-screen font-poppins">
         <Nav />
         <main className="h-[calc(100vh-4rem)]">
           {children}

@@ -15,6 +15,7 @@ import "@styles/globals.css";
 // import required modules
 import { Autoplay, EffectCreative, EffectFade, Navigation } from "swiper";
 import Footer from "@components/Footer";
+import Explorer from "@components/Explorer";
 
 export default function Home() {
   return (
@@ -44,6 +45,7 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </div>
+      <Explorer/>
       <Footer/>
     </>
   );
