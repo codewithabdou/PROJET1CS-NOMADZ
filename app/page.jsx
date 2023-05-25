@@ -3,7 +3,7 @@
 import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import HomeSec from "@components/HomeSec";
+import HomeSec from "@components/HomepageComponents/HomeSec";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,7 +14,7 @@ import "@styles/globals.css";
 
 // import required modules
 import { Autoplay, EffectCreative, EffectFade, Navigation } from "swiper";
-import Footer from "@components/Footer";
+import Footer from "@components/shared/Footer";
 
 export default function Home() {
   return (
@@ -44,7 +44,7 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
