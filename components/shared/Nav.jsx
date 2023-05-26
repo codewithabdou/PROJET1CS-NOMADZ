@@ -4,9 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
+import { MdCircleNotifications } from "react-icons/md";
 
 const Nav = () => {
-  const user = true;
+  const [user,setUser] = useState(true);
+
 
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -34,18 +36,13 @@ const Nav = () => {
                 Visite
               </p>
             </Link>
-            <button type="button" className="outline_btn">
-              Sign Out
+            <button onClick={()=>setUser(false)} type="button" className="outline_btn">
+              Se déconneter
             </button>
-            <Link href="/profile">
-              <Image
-                src="/assets/images/profile.png"
-                width={37}
-                height={37}
-                className="rounded-full cursor-pointer"
-                alt="profile"
-              />
-            </Link>
+            <MdCircleNotifications
+              size={40}
+              className="text-white cursor-pointer  "
+            />
           </div>
         ) : (
           <div className="flex flex-center gap-3 md:gap-5">
@@ -59,8 +56,12 @@ const Nav = () => {
                 Visite
               </p>
             </Link>
-            <button type="button" className="outline_btn">
-              Sign in
+            <button
+              type="button"
+              onClick={()=>{ setUser(true)}}
+              className="outline_btn"
+            >
+              Se connecter
             </button>
           </div>
         )}
@@ -115,10 +116,11 @@ const Nav = () => {
                   type="button"
                   onClick={() => {
                     setToggleDropdown(false);
+                    setUser(false);
                   }}
                   className="mt-5 w-[80%] black_btn"
                 >
-                  Sign Out
+                  Se déconneter
                 </button>
               </div>
             )}
@@ -158,10 +160,11 @@ const Nav = () => {
                       type="button"
                       onClick={() => {
                         setToggleDropdown(false);
+                        setUser(true);
                       }}
                       className="mt-5 w-[80%] black_btn"
                     >
-                      Sign in
+                      Se connecter
                     </button>
                   </div>
                 </>

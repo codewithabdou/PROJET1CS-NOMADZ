@@ -3,7 +3,7 @@
 import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import HomeSec from "@components/HomeSec";
+import HomeSec from "@components/HomepageComponents/HomeSec";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,12 +14,14 @@ import "@styles/globals.css";
 
 // import required modules
 import { Autoplay, EffectCreative, EffectFade, Navigation } from "swiper";
-import Footer from "@components/Footer";
+import Footer from "@components/shared/Footer";
 import Explorer from "@components/Explorer";
+import Navigator from "@components/Navigator";
 
 export default function Home() {
   return (
     <>
+      <Navigator/>
       <HomeSec />
       <div className="absolute flex-center top-0 left-0 w-full -z-10 h-screen ">
         <Swiper

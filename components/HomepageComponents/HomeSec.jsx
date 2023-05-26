@@ -2,6 +2,13 @@ import React from "react";
 import Link from "next/link";
 
 const HomeSec = () => {
+  const scrollToDiv = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="cursor-default h-full gap-8 flex-col w-auto flex-center">
       <h1 className="text-center head_text text-white">
@@ -14,14 +21,13 @@ const HomeSec = () => {
         cités ancestrales du Sahara aux côtes méditerranéennes préservées,
         l'Algérie offre une diversité unique à explorer!
       </p>
-      <Link href={"/map"}>
-        <button
-          type="button"
-          className=" border font-semibold border-[#FA7436] bg-[#FA7436] py-1.5 px-10 text-white transition-all hover:bg-white hover:-translate-y-1 hover:translate-x-1 hover:text-[#FA7436] text-center text-sm font-inter flex items-center justify-center"
-        >
-          Explorez
-        </button>
-      </Link>
+      <button
+        onClick={() => scrollToDiv("explorer")}
+        type="button"
+        className=" font-semibold rounded-sm bg-gradient-to-r from-[#FA7436] to-[#FFB951] py-1.5 px-8 shadow-inner shadow-[rgba(0,0,0,0.25)] text-white transition-all hover:-translate-y-1 hover:translate-x-1 text-center text-sm font-inter flex items-center justify-center"
+      >
+        Explorez
+      </button>
     </div>
   );
 };
