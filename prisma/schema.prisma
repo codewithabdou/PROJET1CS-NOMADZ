@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Site {
+  name        String
+  wilaya      String  
+  categorie   String
+  theme       String
+  accessTime  String
+  transport   String?
+  latitude    Int
+  longitude   Int
+  @@id([name,wilaya])
+  events      Event[]
+  favoris     Favori[]
+  evals       Eval[]
+}
+
+model Event{
+  id          Int           @id @default(autoincrement())
+  siteName    String
+  wilaya      String
+  name        String
+  description String
+  date        DateTime
+  site        Site          @relation(fields: [siteName,wilaya], references: [name,wilaya])
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  favoris     Favori[]
+  evals       Eval[]
+}
+
+model Favori {
+  userId     Int    
+  siteName   String 
+  wilaya     String   
+  @@id([userId,siteName,wilaya])  
+  site        Site          @relation(fields: [siteName,wilaya], references: [name,wilaya])
+  user        User          @relation(fields: [userId], references: [id])
+}
+
+model Eval  {
+  userId     Int    
+  siteName   String 
+  wilaya     String   
+  @@id([userId,siteName,wilaya])
+  site        Site          @relation(fields: [siteName,wilaya], references: [name,wilaya])
+  user        User          @relation(fields: [userId], references: [id]) 
+}
