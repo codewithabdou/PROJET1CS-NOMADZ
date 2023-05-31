@@ -11,6 +11,7 @@ datasource db {
 }
 
 model Site {
+  id          Int            @id @default(autoincrement())    
   name        String
   wilaya      String  
   categorie   String
@@ -19,43 +20,42 @@ model Site {
   transport   String?
   latitude    Int
   longitude   Int
-  @@id([name,wilaya])
   events      Event[]
   favoris     Favori[]
   evals       Eval[]
 }
 
 model Event{
-  id          Int           @id @default(autoincrement())
-  siteName    String
-  wilaya      String
+  id          Int           @default(autoincrement())
+  siteId      Int
   name        String
   description String
   date        DateTime
-  site        Site          @relation(fields: [siteName,wilaya], references: [name,wilaya])
+  @@id([id,siteId])  
+  site        Site          @relation(fields: [siteId], references: [id])
 }
 
 model User {
-  id          Int           @id @default(autoincrement())
+  id          String        @id 
   email       String        @unique
   favoris     Favori[]
   evals       Eval[]
 }
 
 model Favori {
-  userId     Int    
-  siteName   String 
-  wilaya     String   
-  @@id([userId,siteName,wilaya])  
-  site        Site          @relation(fields: [siteName,wilaya], references: [name,wilaya])
+  userId     String  
+  siteId      Int  
+  @@id([userId,siteId])  
+  site        Site          @relation(fields: [siteId], references: [id])
   user        User          @relation(fields: [userId], references: [id])
 }
 
 model Eval  {
-  userId     Int    
-  siteName   String 
-  wilaya     String   
-  @@id([userId,siteName,wilaya])
-  site        Site          @relation(fields: [siteName,wilaya], references: [name,wilaya])
+  userId     String    
+  siteId     Int 
+  stars      Int
+  comment    String?
+  @@id([userId,siteId])
+  site        Site          @relation(fields: [siteId], references: [id])
   user        User          @relation(fields: [userId], references: [id]) 
 }
