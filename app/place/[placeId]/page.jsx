@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -19,8 +21,12 @@ import { EffectFade, Navigation, Pagination } from "swiper";
 import { Rate } from "antd";
 
 const PlaceInfos = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="bg-white grid-flow-row grid grid-cols-1 lg:grid-cols-2 mt-20 min-h-screen">
+    <div className="bg-[#FEFCFB] grid-flow-row grid grid-cols-1 lg:grid-cols-2 pt-20 min-h-screen">
       <div className="col-span-1 p-5 lg:p-10 ">
         <div className="w-full flex flex-row justify-between items-center">
           <div className="felx flex-col items-start ">
