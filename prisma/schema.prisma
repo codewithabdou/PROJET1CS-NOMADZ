@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Site {
+  id          Int            @id @default(autoincrement())    
+  name        String
+  wilaya      String  
+  categorie   String
+  theme       String
+  accessTime  String
+  transport   String?
+  latitude    Int
+  longitude   Int
+  images      String[]
+  events      Event[]
+  favoris     Favori[]
+  evals       Eval[]
+  @@unique([name, wilaya])
+}
+
+model Event{
+  id          Int           @default(autoincrement())
+  siteId      Int
+  name        String
+  description String
+  date        DateTime
+  @@id([id,siteId])  
+  site        Site          @relation(fields: [siteId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id          String        @id 
+  email       String        @unique
+  favoris     Favori[]
+  evals       Eval[]
+}
+
+model Admin {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  password   String   
+}
+
+
+model Favori {
+  userId     String  
+  siteId      Int  
+  @@id([userId,siteId])  
+  site        Site          @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  user        User          @relation(fields: [userId], references: [id])
+}
+
+model Eval  {
+  userId     String    
+  siteId     Int 
+  stars      Int
+  comment    String?
+  @@id([userId,siteId])
+  site        Site          @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  user        User          @relation(fields: [userId], references: [id]) 
+}

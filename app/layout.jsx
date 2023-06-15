@@ -1,3 +1,4 @@
+import Providers from '@components/Provider';
 import Nav from "@components/shared/Nav";
 import "@styles/globals.css";
 
@@ -6,12 +7,14 @@ export const metadata = {
   description: "E-tourism platform",
 };
 
-const LayoutRoot = ({ children }) => {
+const LayoutRoot = ({ children,session }) => {
   return (
     <html lang="fr">
-      <body className="min-h-screen font-poppins">
+      <body className="h-screen font-poppins">
+      <Providers session={session}>
         <Nav />
         <main className="h-screen">{children}</main>
+        </Providers>
       </body>
     </html>
   );
