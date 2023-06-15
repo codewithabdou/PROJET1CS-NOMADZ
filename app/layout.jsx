@@ -11,13 +11,9 @@ const LayoutRoot = ({ children,session }) => {
   return (
     <html lang="fr">
       <body className="h-screen font-poppins">
-        <Providers session={session}>
-
+      <Providers session={session}>
         <Nav />
-        <main className="h-[calc(100vh-4rem)]">
-          {children}
-        </main>
-
+        <main className="h-screen">{children}</main>
         </Providers>
       </body>
     </html>

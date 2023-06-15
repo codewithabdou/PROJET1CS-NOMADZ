@@ -13,7 +13,7 @@ import "swiper/css/effect-fade";
 import "@styles/globals.css";
 
 // import required modules
-import { Autoplay, EffectCreative, EffectFade, Navigation } from "swiper";
+import { Autoplay, EffectFade, Navigation } from "swiper";
 import Footer from "@components/shared/Footer";
 import Explorer from "@components/Explorer";
 import Navigator from "@components/Navigator";
@@ -21,7 +21,7 @@ import Navigator from "@components/Navigator";
 export default function Home() {
   return (
     <>
-      <Navigator/>
+      <Navigator />
       <HomeSec />
       <div className="absolute flex-center top-0 left-0 w-full -z-10 h-screen ">
         <Swiper
@@ -47,8 +47,8 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </div>
-      <Explorer/>
-      <Footer/>
+      <Explorer />
+      <Footer />
     </>
   );
 }

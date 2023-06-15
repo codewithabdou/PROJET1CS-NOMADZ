@@ -2,18 +2,65 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
 import { MdCircleNotifications } from "react-icons/md";
+import LoginModal from "@components/LoginModal";
+import SignUpModal from "@components/SignUpModal";
 
 const Nav = () => {
-  const [user,setUser] = useState(true);
-
+  const [user, setUser] = useState(true);
 
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
+  const [y, setY] = useState(0);
+
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+
+  const showSignUpModal = () => {
+    setIsSignUpModalOpen(true);
+  };
+
+  const showLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const handleNavigation = (e) => {
+    setY(window.scrollY);
+  };
+
+  useEffect(() => {
+    setY(window.scrollY);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", (e) => handleNavigation(e));
+
+    return () => {
+      window.removeEventListener("scroll", (e) => handleNavigation(e));
+    };
+  }, [y]);
+
   return (
-    <nav className="flex-between bg-gradient-to-b from-gray-800 to-transparent h-16 w-full lg:px-20 px-10 py-6">
+    <nav
+      className={`flex-between fixed top-0 z-[9999] ${
+        y > 50
+          ? "bg-[rgba(0,0,0,0.8)]"
+          : "bg-gradient-to-b from-gray-800 to-transparent"
+      }   h-16 w-full lg:px-20 px-10 py-6 `}
+    >
+      <LoginModal
+        isLoginModalOpen={isLoginModalOpen}
+        setIsLoginModalOpen={setIsLoginModalOpen}
+        setIsSignUpModalOpen={setIsSignUpModalOpen}
+      />
+      <SignUpModal
+        setIsLoginModalOpen={setIsLoginModalOpen}
+        isSignUpModalOpen={isSignUpModalOpen}
+        setIsSignUpModalOpen={setIsSignUpModalOpen}
+      />
       <Link href="/" className="flex gap-2 flex-center">
         <img
           src="/assets/images/logo.png"
@@ -36,7 +83,11 @@ const Nav = () => {
                 Visite
               </p>
             </Link>
-            <button onClick={()=>setUser(false)} type="button" className="outline_btn">
+            <button
+              onClick={() => setUser(false)}
+              type="button"
+              className="outline_btn"
+            >
               Se déconneter
             </button>
             <MdCircleNotifications
@@ -58,7 +109,9 @@ const Nav = () => {
             </Link>
             <button
               type="button"
-              onClick={()=>{ setUser(true)}}
+              onClick={() => {
+                showLoginModal();
+              }}
               className="outline_btn"
             >
               Se connecter
@@ -82,16 +135,6 @@ const Nav = () => {
 
             {toggleDropdown && (
               <div className="dropdown ">
-                <Link href="/profile">
-                  <p
-                    className="dropdown_link cursor-pointer"
-                    onClick={() => {
-                      setToggleDropdown(false);
-                    }}
-                  >
-                    Profile
-                  </p>
-                </Link>
                 <Link href="/map">
                   <p
                     className="dropdown_link cursor-pointer"
@@ -118,7 +161,7 @@ const Nav = () => {
                     setToggleDropdown(false);
                     setUser(false);
                   }}
-                  className="mt-5 w-[80%] black_btn"
+                  className="mt-5 w-[90%] black_btn"
                 >
                   Se déconneter
                 </button>
@@ -160,7 +203,7 @@ const Nav = () => {
                       type="button"
                       onClick={() => {
                         setToggleDropdown(false);
-                        setUser(true);
+                        showLoginModal();
                       }}
                       className="mt-5 w-[80%] black_btn"
                     >

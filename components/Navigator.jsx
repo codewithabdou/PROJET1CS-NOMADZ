@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 
 const Navigator = () => {
-  const [y, setY] = useState(window.scrollY);
+  const [y, setY] = useState(0);
   const [inHome, setInHome] = useState(true);
 
   const handleNavigation = (e) => {
