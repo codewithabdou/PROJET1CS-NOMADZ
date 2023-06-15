@@ -9,10 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "8": "^0.0.1",
     "@prisma/client": "^4.14.1",
     "antd": "^5.5.1",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.37.0",
     "next": "13.4.2",
+    "next-auth": "^4.22.1",
     "postcss": "8.4.23",
     "prisma": "^4.14.1",
     "react": "18.2.0",

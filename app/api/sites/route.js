@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient,Prisma } from '@prisma/client'
 
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient({errorFormat: 'minimal',})
 
 
 export async function GET(request){
@@ -45,10 +45,14 @@ export async function POST(request){
     try{
         const data = await request.json()
         const site = await prisma.site.create({data})
-        return NextResponse.json(site)
+        return NextResponse.json(site, { status: 201 })
     }
     catch(error)
     {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2002') {
+          return NextResponse.json({ message: error.message }, { status: 409 })
+        }}
         return NextResponse.json({ message: error.message }, { status: 500 });
     }
 }
