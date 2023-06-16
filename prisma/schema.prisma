@@ -19,8 +19,8 @@ model Site {
   theme       String
   accessTime  String
   transport   String?
-  latitude    Int
-  longitude   Int
+  latitude    Float
+  longitude   Float
   images      String[]
   events      Event[]
   favoris     Favori[]
