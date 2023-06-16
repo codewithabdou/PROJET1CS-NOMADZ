@@ -19,10 +19,6 @@ const Nav = () => {
 
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
-  const showSignUpModal = () => {
-    setIsSignUpModalOpen(true);
-  };
-
   const showLoginModal = () => {
     setIsLoginModalOpen(true);
   };
@@ -124,48 +120,59 @@ const Nav = () => {
       <div className="sm:hidden flex relative">
         {user ? (
           <div className="flex">
-            <Image
-              src="/assets/images/profile.png"
-              width={37}
-              height={37}
-              className="rounded-full"
-              alt="profile"
-              onClick={() => setToggleDropdown((current) => !current)}
-            />
-
-            {toggleDropdown && (
-              <div className="dropdown ">
-                <Link href="/map">
+            {toggleDropdown ? (
+              <>
+                <GiCancel
+                  size={25}
+                  className="text-white"
+                  onClick={() => setToggleDropdown(false)}
+                />
+                <div className="dropdown ">
+                  <Link href="/map">
+                    <p
+                      className="dropdown_link cursor-pointer"
+                      onClick={() => {
+                        setToggleDropdown(false);
+                      }}
+                    >
+                      Map
+                    </p>
+                  </Link>
+                  <Link href="/visite">
+                    <p
+                      className="dropdown_link cursor-pointer"
+                      onClick={() => {
+                        setToggleDropdown(false);
+                      }}
+                    >
+                      Visite
+                    </p>
+                  </Link>
                   <p
                     className="dropdown_link cursor-pointer"
                     onClick={() => {
                       setToggleDropdown(false);
                     }}
                   >
-                    Map
+                    Notifications
                   </p>
-                </Link>
-                <Link href="/visite">
-                  <p
-                    className="dropdown_link cursor-pointer"
+                  <button
+                    type="button"
                     onClick={() => {
-                      setToggleDropdown(false);
+                      setUser(false);
                     }}
+                    className="mt-5 w-[90%] black_btn"
                   >
-                    Visite
-                  </p>
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setToggleDropdown(false);
-                    setUser(false);
-                  }}
-                  className="mt-5 w-[90%] black_btn"
-                >
-                  Se déconneter
-                </button>
-              </div>
+                    Se déconnecter
+                  </button>
+                </div>
+              </>
+            ) : (
+              <GiHamburgerMenu
+                size={25}
+                className="text-white"
+                onClick={() => setToggleDropdown(true)}
+              />
             )}
           </div>
         ) : (
