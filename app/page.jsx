@@ -21,6 +21,7 @@ import Navigator from "@components/Navigator";
 export default function Home() {
   return (
     <>
+      <div className="absolute bg-gradient-to-b from-[rgba(0,0,0,0.5)] to-transparent flex-center top-0 left-0 w-full -z-5 h-screen " />
       <Navigator />
       <HomeSec />
       <div className="absolute flex-center top-0 left-0 w-full -z-10 h-screen ">

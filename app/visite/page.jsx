@@ -1,3 +1,4 @@
+import Footer from "@components/shared/Footer";
 import React from "react";
 import { GiPrivateFirstClass } from "react-icons/gi";
 
@@ -30,8 +31,8 @@ const Visite = () => {
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div className="flex justify-center p-10 items-center">
-          <div className="bg-[#817F9B]  rounded-md space-y-8 px-2 min-h-96 pb-4 pt-8 xl:w-[70%] w-[90%] ">
-            <h2 className="text-white text-2xl text-center">
+          <div className="bg-[#817F9B]  rounded-md flex flex-col justify-between items-center px-2 h-[22rem] pb-4 pt-8 xl:w-[70%] w-[90%] ">
+            <h2 className="text-white font-semibold text-2xl text-center">
               Essayez la <span className="text-[#FA7436]">Visite 360°</span>
             </h2>
             <p className="text-sm indent-4 px-4 text-white">
@@ -50,14 +51,16 @@ const Visite = () => {
           </div>
         </div>
         <div className="flex justify-center p-10 items-center">
-          <div className="bg-[#817F9B]  rounded-md space-y-8 px-2 min-h-96 pb-4 pt-8 xl:w-[70%] w-[90%] ">
-            <h2 className="text-white text-2xl text-center">
-              Essayez la <span className="text-[#FA7436]">Visite 360°</span>
+          <div className="bg-[#817F9B]  rounded-md flex flex-col justify-between items-center px-2 h-[22rem] pb-4 pt-8 xl:w-[70%] w-[90%] ">
+            <h2 className="text-white font-semibold text-2xl text-center">
+              Essayez la{" "}
+              <span className="text-[#FA7436]">Visite Virtuelle</span>
             </h2>
             <p className="text-sm indent-4 px-4 text-white">
-              Un panorama sans limites, qui vous transportera au cœur de chaque
-              lieu, avec une sensation de présence authentique avec une durée de
-              temps illimitée, selectionnez un lieu
+              Une réalité qui se mêle à l'imagination En utilisant la réalité
+              virtuelle pour créer une expérience interactive et immersive, une
+              visite guidée par notre Assitante Virtuelle Ro, la visite va durer
+              1h au maximum, Séléctionnez le lieu
             </p>
             <div className="flex w-full pr-4 justify-end">
               <button
@@ -70,14 +73,18 @@ const Visite = () => {
           </div>
         </div>
         <div className="flex justify-center p-10 items-center">
-          <div className="bg-[#817F9B]  rounded-md space-y-8 px-2 min-h-96 pb-4 pt-8 xl:w-[70%] w-[90%] ">
-            <h2 className="text-white text-2xl text-center">
-              Essayez la <span className="text-[#FA7436]">Visite 360°</span>
+          <div className="bg-[#817F9B]  rounded-md flex flex-col justify-between items-center px-2 h-[22rem]  pb-4 pt-8 xl:w-[70%] w-[90%] ">
+            <h2 className="text-white font-semibold text-2xl text-center">
+              Essayez la{" "}
+              <span className="text-[#FA7436]">
+                Visite Virtuelle Collective
+              </span>
             </h2>
             <p className="text-sm indent-4 px-4 text-white">
-              Un panorama sans limites, qui vous transportera au cœur de chaque
-              lieu, avec une sensation de présence authentique avec une durée de
-              temps illimitée, selectionnez un lieu
+              Une Room de personnes pour une visite virtuelle partagée, elle
+              sera guidée par notre Assitante Virtuelle Ro, la visite va durer
+              1h au maximum, Séléctionnez le lieu et rejoingnez une Room
+              existante ou créez-en une et invitez vos amis
             </p>
             <div className="flex w-full pr-4 justify-end">
               <button
@@ -90,6 +97,7 @@ const Visite = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -4,24 +4,10 @@ import Search from "./Search";
 import getSites from "@Api/getSites";
 import { Audio } from "react-loader-spinner";
 
-const PlacesList = () => {
-  const [sites, setSites] = useState([]);
-  const [isFetchingSites, setIsFetchingSites] = useState(true);
-
-  useEffect(() => {
-    setIsFetchingSites(true);
-    getSites()
-      .then((data) => {
-        console.log(data);
-        setSites(data);
-        setIsFetchingSites(false);
-      })
-      .catch((e) => console.log(e));
-  }, []);
-
+const PlacesList = ({ sites, isFetchingSites }) => {
   if (isFetchingSites)
     return (
-      <div className="flex-center h-full w-full">
+      <div className="flex-center bg-[#FEFCFB] h-full w-full">
         <Audio
           height="100"
           width="100"
@@ -45,13 +31,26 @@ const PlacesList = () => {
           ))}
         </div>
       ) : (
-        <div className="flex-center h-full w-full">No sites .</div>
+        <div className="flex-center bg-[#FEFCFB] h-full w-full">No sites .</div>
       )}
     </>
   );
 };
 
 const Explorer = () => {
+  const [sites, setSites] = useState([]);
+  const [isFetchingSites, setIsFetchingSites] = useState(true);
+
+  useEffect(() => {
+    setIsFetchingSites(true);
+    getSites()
+      .then((data) => {
+        console.log(data);
+        setSites(data);
+        setIsFetchingSites(false);
+      })
+      .catch((e) => console.log(e));
+  }, []);
   return (
     <div
       id="explorer"
@@ -64,8 +63,8 @@ const Explorer = () => {
       <h1 className="lg:text-4xl text-2xl font-extrabold text-center mb-4 text-[#222222]">
         Que <span className="text-[#FA7436]">visiterons</span> -nous Aujourd'hui
       </h1>
-      <Search />
-      <PlacesList />
+      <Search setSites={setSites} setIsFetchingSites={setIsFetchingSites} />
+      <PlacesList sites={sites} isFetchingSites={isFetchingSites} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { useSession, signIn, signOut, getProviders } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
 import { MdCircleNotifications } from "react-icons/md";
@@ -9,7 +9,9 @@ import LoginModal from "@components/LoginModal";
 import SignUpModal from "@components/SignUpModal";
 
 const Nav = () => {
-  const [user, setUser] = useState(true);
+  const { data: session } = useSession();
+
+  const [providers, setProviders] = useState(null);
 
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -39,6 +41,15 @@ const Nav = () => {
     };
   }, [y]);
 
+  useEffect(() => {
+    const setproviders = async () => {
+      const response = await getProviders();
+      setProviders(response);
+    };
+
+    setproviders();
+  }, []);
+
   return (
     <nav
       className={`flex-between fixed top-0 z-[9999] ${
@@ -67,7 +78,7 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className="sm:flex hidden ">
-        {user ? (
+        {session?.user ? (
           <div className="flex flex-center gap-3 md:gap-5">
             <Link href="/map">
               <p className="relative text-sm font-inter text-white hover:text-[#FA7436] font-medium transition duration-300 hover:-translate-y-1 after:absolute after:bottom-0 after:bg-white flex-center after:h-[1px] after:transition after:duration-300 after:w-[80%] after:scale-x-0 hover:after:scale-x-100 cursor-pointer">
@@ -80,7 +91,7 @@ const Nav = () => {
               </p>
             </Link>
             <button
-              onClick={() => setUser(false)}
+              onClick={() => signOut()}
               type="button"
               className="outline_btn"
             >
@@ -103,22 +114,28 @@ const Nav = () => {
                 Visite
               </p>
             </Link>
-            <button
-              type="button"
-              onClick={() => {
-                showLoginModal();
-              }}
-              className="outline_btn"
-            >
-              Se connecter
-            </button>
+
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  key={provider.name}
+                  type="button"
+                  onClick={() => {
+                    if (provider.name === "Google") signIn();
+                    else showLoginModal();
+                  }}
+                  className="outline_btn"
+                >
+                  {provider.name} connexion
+                </button>
+              ))}
           </div>
         )}
       </div>
 
       {/* Mobile Navigation */}
       <div className="sm:hidden flex relative">
-        {user ? (
+        {session?.user ? (
           <div className="flex">
             {toggleDropdown ? (
               <>
@@ -159,7 +176,7 @@ const Nav = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      setUser(false);
+                      signOut();
                     }}
                     className="mt-5 w-[90%] black_btn"
                   >
@@ -206,16 +223,20 @@ const Nav = () => {
                         Visite
                       </p>
                     </Link>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setToggleDropdown(false);
-                        showLoginModal();
-                      }}
-                      className="mt-5 w-[80%] black_btn"
-                    >
-                      Se connecter
-                    </button>
+                    {providers &&
+                      Object.values(providers).map((provider) => (
+                        <button
+                          key={provider.name}
+                          type="button"
+                          onClick={() => {
+                            if (provider.name === "Google") signIn();
+                            else showLoginModal();
+                          }}
+                          className="mt-5 w-[80%] black_btn"
+                        >
+                          {provider.name} connexion
+                        </button>
+                      ))}
                   </div>
                 </>
               ) : (
