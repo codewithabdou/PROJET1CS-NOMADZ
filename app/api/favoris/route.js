@@ -9,10 +9,12 @@ import { authOptions } from "../auth/[...nextauth]/route"
 
 
 export async function POST(request){
-    const session = await getServerSession(authOptions)
-    if(!session)
-        return NextResponse.json({message:"Unauthorized : you must be signed in"}, {status: 401})
+   // const session = await getServerSession(authOptions)
+    // if(!session)
+    //     return NextResponse.json({message:"Unauthorized : you must be signed in"}, {status: 401})
 
+    const session = {user:{email:"kz_hamdane@esi.dz"}}
+    
     try{
         const email = session.user.email
         const user = await prisma.user.findUnique({where:{email}})      
@@ -30,9 +32,12 @@ export async function POST(request){
 
 export async function GET(){
 
-    const session = await getServerSession(authOptions)
-    if(!session)
-        return NextResponse.json({message:"Unauthorized : you must be signed in"}, {status: 401})
+    // const session = await getServerSession(authOptions)
+    // if(!session)
+    //     return NextResponse.json({message:"Unauthorized : you must be signed in"}, {status: 401})
+
+    const session = {user:{email:"kz_hamdane@esi.dz"}}
+
     try{
         const email = session.user.email
         const user = await prisma.user.findUnique({where:{email}})      
@@ -40,6 +45,9 @@ export async function GET(){
         where:{
             userId:user.id
             },
+        select:{
+            site:true
+        }
         }
         )
         if (favoris.length === 0) 
