@@ -121,7 +121,7 @@ const Nav = () => {
                   key={provider.name}
                   type="button"
                   onClick={() => {
-                    if (provider.name === "Google") signIn();
+                    if (provider.name === "Google") signIn('google');
                     else showLoginModal();
                   }}
                   className="outline_btn"

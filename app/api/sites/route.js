@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
-import { PrismaClient,Prisma } from '@prisma/client'
+import {Prisma} from '@prisma/client'
+import {prisma} from '@prisma/globalclient'
 
 
-const prisma = new PrismaClient({errorFormat: 'minimal',})
 
 
 export async function GET(request){

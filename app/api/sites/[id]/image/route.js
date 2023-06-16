@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server"
 import cloudinary from "cloudinary"
+import{prisma} from "@prisma/globalclient"
 
-import { PrismaClient } from '@prisma/client'
 
 
-const prisma = new PrismaClient({errorFormat: 'minimal',})
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

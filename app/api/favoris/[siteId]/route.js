@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server"
-import { PrismaClient } from '@prisma/client'
+import{prisma} from "@prisma/globalclient"
 
 import { getServerSession  } from "next-auth/next"
 import { authOptions } from "../../auth/[...nextauth]/route"
 
-const prisma = new PrismaClient({errorFormat: 'minimal',})
+
 
 
 export async function DELETE(request ,{params}){

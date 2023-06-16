@@ -1,10 +1,10 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaClient } from '@prisma/client'
+import{prisma} from "@prisma/globalclient"
 import bcrypt from "bcryptjs"
 
-const prisma = new PrismaClient({errorFormat: 'minimal',})
+
 
 
 
@@ -43,12 +43,12 @@ callbacks: {
 async signIn({user,account}) {
   if(account.provider === "google"){
     console.log("user sign in")
-  const {id, email} = user
+  const {id, email,name} = user
   try{
   await prisma.user.upsert({
     where: {id},
-    create: {id,email},
-    update: {id,email},
+    create: {id,email,name},
+    update: {id,email,name},
   })
   }catch(error){
     console.log(error)

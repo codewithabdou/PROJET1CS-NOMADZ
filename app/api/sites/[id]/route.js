@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server"
-import { PrismaClient,Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client'
+import { prisma } from "@prisma/globalclient"
+
+import { getServerSession  } from "next-auth/next"
+import { authOptions } from "../../auth/[...nextauth]/route"
 
 
-const prisma = new PrismaClient({errorFormat: 'minimal',})
 
 
 export async function GET(request ,{params}){
@@ -19,7 +22,9 @@ export async function GET(request ,{params}){
                     select: {
                       stars: true,
                       comment: true,
-                      userId: true
+                      user: {
+                        select: {name:true,}
+                      }
                     }
                 },
                 events: {
@@ -35,6 +40,22 @@ export async function GET(request ,{params}){
         )
         if (!site) 
             return NextResponse.json({ message: "Site not found" }, { status: 404 })
+        const session = await getServerSession(authOptions)
+        if(session){
+            const email = session.user.email
+            const {id:userId} = await prisma.user.findUnique({where:{email}})
+            const favoured = Boolean(await prisma.favori.findUnique({
+                where:{ userId_siteId:
+                        {
+                            userId,
+                            siteId:parsedId,
+                        }
+                }
+            }))
+            console.log(favoured)
+        const xsite = {...site,favoured}
+        return NextResponse.json(xsite)
+        }
     return NextResponse.json(site)
     } 
     catch(error)
