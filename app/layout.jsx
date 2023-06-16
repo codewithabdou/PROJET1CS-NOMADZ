@@ -10,6 +10,7 @@ export const metadata = {
 const LayoutRoot = ({ children, session }) => {
   return (
     <html lang="fr">
+      <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className="h-screen font-poppins">
         <Providers session={session}>
           <Nav />
