@@ -7,6 +7,7 @@ import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
 import { MdCircleNotifications } from "react-icons/md";
 import LoginModal from "@components/LoginModal";
 import SignUpModal from "@components/SignUpModal";
+import NotificationsModal from "@components/NotificationsModals";
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -20,6 +21,9 @@ const Nav = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+
+  const [isNotificationsModalOpen, setIsNotificationsModalOpen] =
+    useState(false);
 
   const showLoginModal = () => {
     setIsLoginModalOpen(true);
@@ -55,7 +59,7 @@ const Nav = () => {
       className={`flex-between fixed top-0 z-[9999] ${
         y > 50
           ? "bg-[rgba(0,0,0,0.8)]"
-          : "bg-gradient-to-b from-gray-800 to-transparent"
+          : "bg-gradient-to-b from-[rgba(0,0,0,0.8)] to-[rgba(0,0,0,0.5)]"
       }   h-16 w-full lg:px-20 px-10 py-6 `}
     >
       <LoginModal
@@ -67,6 +71,10 @@ const Nav = () => {
         setIsLoginModalOpen={setIsLoginModalOpen}
         isSignUpModalOpen={isSignUpModalOpen}
         setIsSignUpModalOpen={setIsSignUpModalOpen}
+      />
+      <NotificationsModal
+        setIsNotificationsModalOpen={setIsNotificationsModalOpen}
+        isNotificationsModalOpen={isNotificationsModalOpen}
       />
       <Link href="/" className="flex gap-2 flex-center">
         <img
@@ -98,8 +106,11 @@ const Nav = () => {
               Se déconneter
             </button>
             <MdCircleNotifications
+              onClick={() => {
+                setIsNotificationsModalOpen(true);
+              }}
               size={40}
-              className="text-white cursor-pointer  "
+              className="text-white hover:scale-110 hover:text-[#FA7436] transition-all duration-300 cursor-pointer  "
             />
           </div>
         ) : (
@@ -169,6 +180,7 @@ const Nav = () => {
                     className="dropdown_link cursor-pointer"
                     onClick={() => {
                       setToggleDropdown(false);
+                      setIsNotificationsModalOpen(true);
                     }}
                   >
                     Notifications

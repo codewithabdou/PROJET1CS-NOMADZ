@@ -5,7 +5,7 @@ import Link from "next/link";
 const PlaceCard = ({ place }) => {
   return (
     <Link className="w-full" href={`/place/${place.id}`}>
-      <div className="bg-white relative border w-full h-80 rounded-lg  ">
+      <div className="bg-white relative hover:-translate-y-1 transition-all duration-300 border w-full h-80 rounded-lg  ">
         <img
           className="h-full absolute top-0 z-10 left-0 w-full rounded-lg object-cover"
           src={
@@ -15,7 +15,7 @@ const PlaceCard = ({ place }) => {
           }
           alt="place_pic"
         />
-        <div className="bg-[rgba(255,255,255,0.6)] pt-4 pl-4 absolute rounded-t-lg z-20 bottom-0 left-0 w-full h-20">
+        <div className="bg-[rgba(255,255,255,0.6)] pt-4 pl-4 absolute rounded-t-lg z-20 bottom-0 left-0 w-full ">
           <h3 className="font-bold text-lg">{place.name}</h3>
           <div className="flex pl-4 items-center gap-x-1">
             <FaMapMarkerAlt className="text-[#FA7436]" />

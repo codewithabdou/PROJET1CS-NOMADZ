@@ -1,11 +1,12 @@
 "use client";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { useEffect, useState } from "react";
 import { Audio } from "react-loader-spinner";
 import getSites from "@Api/getSites";
 import { useRouter } from "next/navigation";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const Map = () => {
   const Token = process.env.NEXT_PUBLIC_APP_TOKEN;
@@ -18,6 +19,8 @@ const Map = () => {
   });
   const [sites, setSites] = useState([]);
   const [isFetchingSites, setIsFetchingSites] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
+  const [siteHovered, setSiteHovered] = useState(null);
 
   useEffect(() => {
     setIsFetchingSites(true);
@@ -37,6 +40,17 @@ const Map = () => {
       console.log("Geolocation is not supported by this browser.");
     }
   }, []);
+
+  const handleMouseOver = (site) => {
+    setIsHovering(true);
+    console.log(site);
+    setSiteHovered(site);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+    setSiteHovered(null);
+  };
 
   function successCallback(position) {
     setPosition({
@@ -84,14 +98,44 @@ const Map = () => {
         {sites?.map((site) => (
           <Marker
             key={site.id}
-            color="black"
             latitude={site.latitude}
             longitude={site.longitude}
-            onClick={() => {
-              router.push(`/place/${site.id}`);
-            }}
-          ></Marker>
+          >
+            <FaMapMarkerAlt
+              onMouseOver={() => handleMouseOver(site)}
+              onMouseOut={handleMouseOut}
+              onClick={() => {
+                router.push(`/place/${site.id}`);
+              }}
+              size={30}
+              className="text-black mb-4 hover:text-white hover:scale-110 transition-all duration-300"
+            />
+          </Marker>
         ))}
+        {siteHovered && (
+          <Popup
+            children={
+              <div className="bg-white relative border w-40 h-40 rounded-lg  ">
+                <img
+                  className="h-full absolute top-0 z-10 left-0 rounded-lg object-cover"
+                  src={
+                    siteHovered.images.length !== 0
+                      ? siteHovered.images[0]
+                      : "/assets/images/pic3.jpg"
+                  }
+                  alt="place_pic"
+                />
+                <div className="bg-[rgba(255,255,255,0.6)] pt-4 pl-4 absolute rounded-t-lg z-20 bottom-0 left-0 w-full ">
+                  <h3 className="font-bold text-lg">{siteHovered.name}</h3>
+                </div>
+              </div>
+            }
+            className="bg-transparent"
+            closeButton={false}
+            latitude={siteHovered.latitude}
+            longitude={siteHovered.longitude}
+          ></Popup>
+        )}
       </ReactMapGL>
     </div>
   );

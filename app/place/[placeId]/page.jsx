@@ -29,6 +29,7 @@ import addFav from "@Api/addFav";
 import removeFav from "@Api/removeFav";
 import { useSession } from "next-auth/react";
 import addCommentaire from "@Api/addCommentaire";
+import { MdAccessTimeFilled } from "react-icons/md";
 
 const PlaceInfos = () => {
   const params = useParams();
@@ -117,6 +118,30 @@ const PlaceInfos = () => {
     }
 
     return initials;
+  }
+
+  function formatDate(dateString) {
+    var date = new Date(dateString);
+    var formattedDate = date.toLocaleDateString("en-US", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+
+    // Extract the date and time parts
+    var [datePart, timePart] = formattedDate.split(", ");
+
+    // Rearrange the date parts
+    var [month, day, year] = datePart.split("/");
+    var rearrangedDate = `${day}-${month}-${year}`;
+
+    // Combine the rearranged date and time parts
+    var result = `${rearrangedDate} à ${timePart}`;
+
+    return result;
   }
 
   if (isFetchingSites)
@@ -216,7 +241,10 @@ const PlaceInfos = () => {
                   />
                 </div>
               )}
-              <div>
+              <div className="mt-4">
+                <h1 className="text-2xl mb-4 font-semibold text-[#222222]">
+                  Commentaires
+                </h1>
                 {site?.evals?.length ? (
                   site?.evals?.map((evalu) => {
                     return (
@@ -234,7 +262,41 @@ const PlaceInfos = () => {
                     );
                   })
                 ) : (
-                  <div className="flex-center m-4">Pas de commentaires .</div>
+                  <div className="flex-center text-[#222222] m-4">
+                    Pas de commentaires .
+                  </div>
+                )}
+              </div>
+              <div className=" mt-4 ">
+                <h1 className="text-2xl mb-4 font-semibold text-[#222222]">
+                  Evènements
+                </h1>
+                {site.events.length ? (
+                  <div className="grid grid-cols-1 mt-4 md:px-4  gap-4">
+                    {site.events.map((e, index) => (
+                      <div
+                        key={e.id}
+                        className=" border-b-[#D9D9D9] border-b w-full "
+                      >
+                        <div className="flex ml-4 gap-4">
+                          <h2 className="text-xl font-semibold text-[#222222]">
+                            {e.name}
+                          </h2>
+                          <div className="flex items-center gap-3 justify-between rounded-2xl py-1.5 px-4 max-w-fit bg-[#D9D9D9]">
+                            <MdAccessTimeFilled className="text-[#FA7436]" />
+                            <p className="text-xs text-[#222222]">
+                              {formatDate(e.date)}
+                            </p>
+                          </div>
+                        </div>
+                        <p className="indent-5 my-2">{e.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex-center text-[#222222] m-4">
+                    Pas d'évènements .
+                  </div>
                 )}
               </div>
             </div>
