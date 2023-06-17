@@ -44,8 +44,8 @@ const Map = () => {
       longitude: position.coords.longitude,
     });
     setViewport({
-      latitude: 10,
-      longitude: 20,
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
       zoom: 10,
     });
   }
@@ -81,7 +81,7 @@ const Map = () => {
         onMove={(viewport) => setViewport(viewport)}
         boxZoom={true}
       >
-        {sites.map((site) => (
+        {sites?.map((site) => (
           <Marker
             key={site.id}
             color="black"

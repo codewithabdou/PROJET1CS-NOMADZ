@@ -1,14 +1,13 @@
-const addFav = async (siteId) => {
-  var raw = `{\r\n    \"siteId\":${siteId}\r\n}`;
-  console.log(raw);
+const addCommentaire = async (data) => {
+  console.log(data);
 
   var requestOptions = {
     method: "post",
     redirect: "follow",
-    body: raw,
+    body: JSON.stringify(data),
   };
 
-  await fetch(`http://localhost:3000/api/favoris/`, requestOptions)
+  await fetch(`http://localhost:3000/api/eval`, requestOptions)
     .then((response) => response.text())
     .then((result) => {
       console.log(JSON.parse(result));
@@ -16,4 +15,4 @@ const addFav = async (siteId) => {
     .catch((error) => console.log("error", error));
 };
 
-export default addFav;
+export default addCommentaire;

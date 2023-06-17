@@ -116,12 +116,12 @@ const Nav = () => {
             </Link>
 
             {providers &&
-              Object.values(providers).map((provider) => (
+              Object.values(providers).map((provider, index) => (
                 <button
-                  key={provider.name}
+                  key={`provider_${index}`}
                   type="button"
                   onClick={() => {
-                    if (provider.name === "Google") signIn('google');
+                    if (provider.name === "Google") signIn("google");
                     else showLoginModal();
                   }}
                   className="outline_btn"
@@ -224,9 +224,9 @@ const Nav = () => {
                       </p>
                     </Link>
                     {providers &&
-                      Object.values(providers).map((provider) => (
+                      Object.values(providers).map((provider, index) => (
                         <button
-                          key={provider.name}
+                          key={`provider_${index}`}
                           type="button"
                           onClick={() => {
                             if (provider.name === "Google") signIn();

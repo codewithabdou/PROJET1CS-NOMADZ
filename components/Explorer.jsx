@@ -22,13 +22,14 @@ const PlacesList = ({ sites, isFetchingSites }) => {
 
   return (
     <>
-      {sites.length !== 0 ? (
+      {sites?.length !== 0 ? (
         <div className="grid grid-cols-1 items-center md:px-24 px-10 pt-8 mb-8 md:gap-x-14 gap-y-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {sites.map((place) => (
-            <div key={place.id} className="flex-center">
-              <PlaceCard place={place} />
-            </div>
-          ))}
+          {Array.isArray(sites) &&
+            sites?.map((place) => (
+              <div key={place.id} className="flex-center">
+                <PlaceCard place={place} />
+              </div>
+            ))}
         </div>
       ) : (
         <div className="flex-center bg-[#FEFCFB] h-full w-full">No sites .</div>
