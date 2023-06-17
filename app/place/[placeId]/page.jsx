@@ -144,23 +144,24 @@ const PlaceInfos = () => {
               <div className="gap-x-3 flex flex-center">
                 <Rate allowHalf defaultValue={siteStars} />
                 <p className="font-semibold">{siteStars}</p>
-                {favoured ? (
-                  <MdFavorite
-                    onClick={() => {
-                      setFavoured(false);
-                    }}
-                    size={30}
-                    className="text-[#FA7436] hover:text-[rgba(250,116,54,0.5)] hover:scale-110 duration-300 transition-all cursor-pointer"
-                  />
-                ) : (
-                  <MdFavoriteBorder
-                    onClick={() => {
-                      setFavoured(true);
-                    }}
-                    size={30}
-                    className="text-[#222222] hover:text-[rgba(250,116,54,1)] hover:scale-110 duration-300 transition-all cursor-pointer"
-                  />
-                )}
+                {session?.user &&
+                  (favoured ? (
+                    <MdFavorite
+                      onClick={() => {
+                        setFavoured(false);
+                      }}
+                      size={30}
+                      className="text-[#FA7436] hover:text-[rgba(250,116,54,0.5)] hover:scale-110 duration-300 transition-all cursor-pointer"
+                    />
+                  ) : (
+                    <MdFavoriteBorder
+                      onClick={() => {
+                        setFavoured(true);
+                      }}
+                      size={30}
+                      className="text-[#222222] hover:text-[rgba(250,116,54,1)] hover:scale-110 duration-300 transition-all cursor-pointer"
+                    />
+                  ))}
               </div>
             </div>
             <div>
@@ -191,28 +192,30 @@ const PlaceInfos = () => {
               {site.description}
             </p>
             <div>
-              <div className=" mt-4 gap-4 flex-center">
-                <p className="bg-[#FA7436] text-center h-fit w-8 rounded-full p-2 text-sm text-white">
-                  {getInitials(session?.user?.name)}
-                </p>
-                <input
-                  onChange={(e) => {
-                    setCommentaire(e.target.value);
-                  }}
-                  value={commentaire}
-                  type="text"
-                  className="py-4 px-6 placeholder:text-xs placeholder:md:text-base border w-[80%] border-gray-500 rounded-2xl"
-                  placeholder="Ajouter votre commentaire ..."
-                />
-                <BiSend
-                  onClick={submitCommentaire}
-                  className={` ${
-                    !isSubmittingCommentaire
-                      ? "cursor-pointer text-[#FA7436]"
-                      : "cursor-not-allowed text-gray-400"
-                  }  h-8 w-8`}
-                />
-              </div>
+              {session?.user && (
+                <div className=" mt-4 gap-4 flex-center">
+                  <p className="bg-[#FA7436] text-center h-fit w-8 rounded-full p-2 text-sm text-white">
+                    {getInitials(session?.user?.name)}
+                  </p>
+                  <input
+                    onChange={(e) => {
+                      setCommentaire(e.target.value);
+                    }}
+                    value={commentaire}
+                    type="text"
+                    className="py-4 px-6 placeholder:text-xs placeholder:md:text-base border w-[80%] border-gray-500 rounded-2xl"
+                    placeholder="Ajouter votre commentaire ..."
+                  />
+                  <BiSend
+                    onClick={submitCommentaire}
+                    className={` ${
+                      !isSubmittingCommentaire
+                        ? "cursor-pointer text-[#FA7436]"
+                        : "cursor-not-allowed text-gray-400"
+                    }  h-8 w-8`}
+                  />
+                </div>
+              )}
               <div>
                 {site?.evals?.length ? (
                   site?.evals?.map((evalu) => {
