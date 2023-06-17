@@ -4,7 +4,7 @@ const removeFav = async (siteId) => {
     redirect: "follow",
   };
 
-  await fetch(`http://localhost:3000/api/favoris/${siteId}`, requestOptions)
+  await fetch(`/api/favoris/${siteId}`, requestOptions)
     .then((response) => response.text())
     .then((result) => {
       console.log(JSON.parse(result));

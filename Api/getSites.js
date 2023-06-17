@@ -4,7 +4,7 @@ const getSites = async () => {
     redirect: "follow",
   };
 
-  const data = await fetch("http://localhost:3000/api/sites", requestOptions)
+  const data = await fetch("/api/sites", requestOptions)
     .then((response) => response.text())
     .then((result) => {
       return JSON.parse(result);

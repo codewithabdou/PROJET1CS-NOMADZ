@@ -127,12 +127,16 @@ const Search = ({ setSites, setIsFetchingSites }) => {
                   label: "histoire",
                 },
                 {
-                  value: "2",
-                  label: "2",
+                  value: "nature",
+                  label: "nature",
                 },
                 {
-                  value: "3",
-                  label: "3",
+                  value: "art",
+                  label: "art",
+                },
+                {
+                  value: "religion",
+                  label: "religion",
                 },
               ]}
             />
@@ -145,16 +149,24 @@ const Search = ({ setSites, setIsFetchingSites }) => {
               value={selectedCat}
               options={[
                 {
-                  value: "site",
-                  label: "site",
+                  value: "musée",
+                  label: "musée",
                 },
                 {
-                  value: "2",
-                  label: "2",
+                  value: "monument",
+                  label: "monument",
                 },
                 {
-                  value: "3",
-                  label: "3",
+                  value: "jardin",
+                  label: "jardin",
+                },
+                {
+                  value: "lieu",
+                  label: "lieu",
+                },
+                {
+                  value: "mosquee",
+                  label: "mosquee",
                 },
               ]}
             />

@@ -7,7 +7,7 @@ const addCommentaire = async (data) => {
     body: JSON.stringify(data),
   };
 
-  await fetch(`http://localhost:3000/api/eval`, requestOptions)
+  await fetch(`/api/eval`, requestOptions)
     .then((response) => response.text())
     .then((result) => {
       console.log(JSON.parse(result));

@@ -7,7 +7,7 @@ const getFilteredSites = async ({ categorie, wilaya, theme }) => {
   console.log(theme, wilaya, categorie);
 
   const data = await fetch(
-    `http://localhost:3000/api/sites?wilaya=${wilaya}&theme=${theme}&categorie=${categorie}`,
+    `/api/sites?wilaya=${wilaya}&theme=${theme}&categorie=${categorie}`,
     requestOptions
   )
     .then((response) => response.text())

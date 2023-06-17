@@ -5,7 +5,7 @@ const getSiteDetails = async (siteId) => {
   };
 
   const data = await fetch(
-    `http://localhost:3000/api/sites/${siteId}`,
+    `/api/sites/${siteId}`,
     requestOptions
   )
     .then((response) => response.text())

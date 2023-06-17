@@ -8,7 +8,7 @@ const addFav = async (siteId) => {
     body: raw,
   };
 
-  await fetch(`http://localhost:3000/api/favoris/`, requestOptions)
+  await fetch(`/api/favoris/`, requestOptions)
     .then((response) => response.text())
     .then((result) => {
       console.log(JSON.parse(result));
