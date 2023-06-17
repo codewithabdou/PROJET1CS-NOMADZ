@@ -8,8 +8,9 @@ const NotificationsModal = ({
   setIsNotificationsModalOpen,
   isNotificationsModalOpen,
 }) => {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState(null);
   const [isFetchingEvents, setIsFetchingEvents] = useState(true);
+  const [firstFetch, setFirstFetch] = useState(false);
 
   useEffect(() => {
     setInterval(() => {
@@ -19,6 +20,7 @@ const NotificationsModal = ({
           console.log(data);
           setEvents(data);
           setIsFetchingEvents(false);
+          setFirstFetch(true);
         })
         .catch((e) => console.log(e));
     }, 10000);
@@ -56,7 +58,7 @@ const NotificationsModal = ({
       }}
       open={isNotificationsModalOpen}
     >
-      {isFetchingEvents ? (
+      {isFetchingEvents && !firstFetch ? (
         <div className="flex-center bg-[#FEFCFB] h-full w-full">
           <Audio
             height="100"
